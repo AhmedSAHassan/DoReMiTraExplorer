@@ -49,7 +49,7 @@ get_expr_matrix <- function(se) {
 #'
 #' @param se SummarizedExperiment object from the DoReMiTra collection
 #' @export
-##' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggplot
 #' @importFrom SummarizedExperiment assay
 #'
 #' @examples
