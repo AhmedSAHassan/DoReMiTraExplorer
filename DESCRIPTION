@@ -33,7 +33,7 @@ Imports:
     plotly,
     patchwork,
     grid,
-    DoReMiTra,
+    DoReMiTra
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 URL: https://github.com/AhmedSAHassan/DoReMiTraExplorer
