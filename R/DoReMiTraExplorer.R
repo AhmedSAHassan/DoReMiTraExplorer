@@ -44,7 +44,7 @@ get_expr_matrix <- function(se) {
   }
 }
 
-# the App
+
 #'Visualize radiation transcriptomic datasets in the form of SE objects from the DoReMiTra collection
 #'
 #' @param se SummarizedExperiment object from the DoReMiTra collection
@@ -53,7 +53,7 @@ get_expr_matrix <- function(se) {
 #' @importFrom SummarizedExperiment assay
 #'
 #' @examples
-#' se <- get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
+#' se <- DoReMiTra::get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
 #' DoReMiTra_explorer(se)
 #
 DoReMiTra_explorer <- function(se) {
