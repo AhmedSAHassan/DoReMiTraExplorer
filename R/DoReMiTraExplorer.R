@@ -49,8 +49,20 @@ get_expr_matrix <- function(se) {
 #'
 #' @param se SummarizedExperiment object from the DoReMiTra collection
 #' @export
-#' @importFrom ggplot2 ggplot
-#' @importFrom SummarizedExperiment assay
+#' @import bs4Dash
+#' @import shinyWidgets
+#' @import ComplexHeatmap
+#' @import matrixStats
+#' @import ggplot2
+#' @import SummarizedExperiment
+#' @import RColorBrewer
+#' @import ggrepel
+#' @import DESeq2
+#' @import dplyr
+#' @import plotly
+#' @import patchwork
+#' @import grid
+#' @import DoReMiTra
 #'
 #' @examples
 #' se <- DoReMiTra::get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
