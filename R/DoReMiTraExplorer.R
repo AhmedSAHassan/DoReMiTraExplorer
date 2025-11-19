@@ -50,6 +50,7 @@ get_expr_matrix <- function(se) {
 #' @param se SummarizedExperiment object from the DoReMiTra collection
 #' @export
 #' @import bs4Dash
+#' @import shiny
 #' @import shinyWidgets
 #' @import ComplexHeatmap
 #' @import matrixStats
@@ -65,8 +66,8 @@ get_expr_matrix <- function(se) {
 #' @import DoReMiTra
 #'
 #' @examples
-#' se <- DoReMiTra::get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
-#' DoReMiTra_explorer(se)
+#' #se <- DoReMiTra::get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
+#' #DoReMiTra_explorer(se)
 #
 DoReMiTra_explorer <- function(se) {
   se_name <- deparse(substitute(se))
