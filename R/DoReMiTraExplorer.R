@@ -45,16 +45,18 @@ get_expr_matrix <- function(se) {
 }
 
 # the App
-#' Title
+#'Visualize radiation transcriptomic datasets in the form of SE objects from the DoReMiTra collection
 #'
-#' @param se
-#' @param annotation_df
-#'
-#' @returns
+#' @param se SummarizedExperiment object from the DoReMiTra collection
 #' @export
+##' @importFrom ggplot2 ggplot
+#' @importFrom SummarizedExperiment assay
 #'
 #' @examples
-DoReMiTra_explorer <- function(se, annotation_df = NULL) {
+#' se <- get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
+#' DoReMiTra_explorer(se)
+#
+DoReMiTra_explorer <- function(se) {
   se_name <- deparse(substitute(se))
 
   expr_list <- get_expr_matrix(se)
@@ -108,11 +110,6 @@ DoReMiTra_explorer <- function(se, annotation_df = NULL) {
       conditionalPanel(
         condition = "input.tabs == 'pca'",
         hr(),
-        pickerInput(
-          "pca_group_var", "Group by:",
-          choices = colnames(colData(se)),
-          selected = if("Dose" %in% colnames(colData(se))) "Dose" else colnames(colData(se))[1]
-        ),
         pickerInput(
           "pca_color_by", "Color by:",
           choices = colnames(colData(se)),
@@ -194,21 +191,26 @@ DoReMiTra_explorer <- function(se, annotation_df = NULL) {
 
       df <- data.frame(pca_res$x[, 1:2], colData(se))
 
-      color_var <- if(!is.null(input$pca_color_by) && input$pca_color_by %in% colnames(colData(se))) {
-        df[[input$pca_color_by]]
+      # determine valid color column name (or NULL)
+      color_col <- if (!is.null(input$pca_color_by) && input$pca_color_by %in% colnames(colData(se))) {
+        input$pca_color_by
       } else {
-        df[[input$pca_group_var]]
+        NULL
       }
 
-      ggplot(df, aes_string(x = "PC1", y = "PC2", color = input$pca_color_by)) +
-        geom_point(size = 3) +
-        xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+      if (!is.null(color_col)) {
+        p <- ggplot(df, aes_string(x = "PC1", y = "PC2", color = color_col)) +
+          geom_point(size = 3)
+      } else {
+        p <- ggplot(df, aes(x = PC1, y = PC2)) +
+          geom_point(size = 3)
+      }
+
+      p + xlab(paste0("PC1: ", percentVar[1], "% variance")) +
         ylab(paste0("PC2: ", percentVar[2], "% variance")) +
         ggpt
     }, res = 96)
 
-
-    # Heatmap
     # Heatmap
     output$heatmap_plot <- renderPlot({
 
@@ -292,7 +294,7 @@ DoReMiTra_explorer <- function(se, annotation_df = NULL) {
         top_annotation = ha,
         show_row_names = show_row_names_flag,
         row_names_gp = grid::gpar(fontsize = fontsize_row),
-        column_names_gp = grid::gpar(fontsize = 10),
+        column_names_gp = grid::gpar(fontsize = 7),
         row_names_side = "left"
       )
 
@@ -463,9 +465,8 @@ DoReMiTra_explorer <- function(se, annotation_df = NULL) {
     output$genecard_links <- renderUI({
       req(input$gene)
       genes <- input$gene
-      if (!is.null(annotation_df)) {
-        gene_ids <- annotation_df$gene_id[match(genes, annotation_df$gene_name)]
-      } else gene_ids <- genes
+      # Use gene symbols directly for GeneCards URLs
+      gene_ids <- genes
       links <- lapply(gene_ids, function(g) {
         tags$a(href = paste0("https://www.genecards.org/cgi-bin/carddisp.pl?gene=", g),
                target = "_blank", g)
