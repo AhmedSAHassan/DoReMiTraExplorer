@@ -1,6 +1,6 @@
 Package: DoReMiTraExplorer
 Title: Visualization and exploration of SummarizedExperiment objects from the DoReMiTra collection
-Version: 0.0.0.9000
+Version: 1.2.0
 Authors@R: 
     c(person("Ahmed", "Salah", role = c("aut", "cre"),
                     email = "ahhassan@uni-mainz.de", 
