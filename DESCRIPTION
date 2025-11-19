@@ -1,8 +1,14 @@
 Package: DoReMiTraExplorer
-Title: What the Package Does (One Line, Title Case)
+Title: Visualization and exploration of SummarizedExperiment objects from the DoReMiTra collection
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+    c(person("Ahmed", "Salah", role = c("aut", "cre"),
+                    email = "ahhassan@uni-mainz.de", 
+                    comment = c(ORCID = "0000-0001-7003-4466")),
+             person("Federico", "Marini", role = c("aut"), 
+                    email = "marinif@uni-mainz.de", 
+                    comment = c(ORCID = "0000-0003-3252-7758"))
+           )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -32,3 +38,4 @@ VignetteBuilder: knitr
 Config/testthat/edition: 3
 URL: https://github.com/AhmedSAHassan/DoReMiTraExplorer
 BugReports: https://github.com/AhmedSAHassan/DoReMiTraExplorer/issues
+biocViews: ExperimentData, RNASeqData, ExperimentHub, ExpressionData, GEO, PackageTypeData, ShinyApps
