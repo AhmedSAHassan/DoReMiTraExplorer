@@ -11,9 +11,8 @@ BiocManager::install("DoReMiTra")
 
 # Install the DoReMiTra-explorer Shiny App
 
-Clone the repository:
+devtools::install_github("AhmedSAHassan/DoReMiTraExplorer")
 
-git clone https://github.com/AhmedSAHassan/DoReMiTra-shiny.git
 ```
 
 ## Key Features
