@@ -64,6 +64,10 @@ get_expr_matrix <- function(se) {
 #' @import patchwork
 #' @import grid
 #' @import DoReMiTra
+#' @importFrom SummarizedExperiment colData
+#' @importFrom DESeq2 DESeqDataSetFromMatrix
+
+
 #'
 #' @examples
 #' #se <- DoReMiTra::get_DoReMiTra_data("SE_Salah_2025_ExVivo", gene_symbol = TRUE)
